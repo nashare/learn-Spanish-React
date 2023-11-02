@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Arial';
+    color: #2a1c21;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 3vmin;
+    border: 0.2vmin solid rgb(90, 90, 90);
+    display: block;
+}
+
+.image-label img {
+    transition: box-shadow 0.3s;
+}
+
+.button-yellow {
+    background-color: #ffd450;
+    font-size: large;
+    color: #2a1c21;
+    font-weight: bold;
+    padding: 1.5vmin 4vmin;
+    text-align: center;
+    border-radius: 3vmin;
+    border: none;
+}
+
+.button-yellow:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.button-yellow:hover {
+    text-decoration: underline;
+}
+
+.link {
+    color: #2a1c21;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.link:visited {
+    color: inherit;
+}
+
+.form-group label,
+.form-group input {
+    display: block;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+.margin-2 {
+    margin: 2vmin;
+}
+
+.margin-1-4 {
+    margin: 1vmin 0 4vmin 0;
+}
+
+.margin-1-0 {
+    margin: 0.5vmin 0;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    font-size: 2vmin;
+    padding: 0.7vmin 1.5vmin;
+}
+
+@media (max-width: 768px) {
+    input {
+        font-size: 3vmin;
+    }
+}
+
+@media (max-width: 600px) {
+    input {
+        font-size: 4vmin;
+    }
+}
+
+.border-buttom-straight {
+    border-radius: 3vmin 3vmin 0 0;
+    border-bottom: none;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} 

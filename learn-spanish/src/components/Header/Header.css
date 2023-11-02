@@ -1,0 +1,28 @@
+.header {
+    background-color: #ffd450;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-links {
+    display: flex;
+}
+
+.header-link {
+    margin: 0 1vmin;
+    background-color: white;
+    font-weight: bold;
+    padding: 1.5vmin 4vmin;
+    text-align: center;
+    border-radius: 3vmin;
+}
+
+@media (max-width: 425px) {
+    .header-link {
+        padding: 1vmin 2vmin;
+    }
+}

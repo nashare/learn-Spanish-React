@@ -1,0 +1,33 @@
+.homepage-content {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+}
+
+.homepage-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 6vmin;
+    font-size: 2rem;
+}
+
+.homepage-subtitle {
+    color: #ff8104;
+}
+
+.homepage-image {
+    width: 60%;
+    border: none;
+}
+
+@media (max-width: 1024px) {
+    .homepage-text {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-content {
+        display: block;
+    }
+}
