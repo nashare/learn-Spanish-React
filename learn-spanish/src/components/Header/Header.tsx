@@ -1,35 +1,34 @@
 import React from 'react';
 import './Header.css';
+import { Link } from "react-router-dom";
+import { useUser } from '../../utils/userContext';
 
-type HeaderProps = {
-    loggedIn: boolean;
-};
-
-export const Header = ({ loggedIn }: HeaderProps) => {
+export const Header = () => {
+    const { user } = useUser();
     return (
         <header className='header'>
             <nav className='header-nav'>
-                <a href='/' className='header-link link '>
+                <Link to='/' className='header-link link '>
                     <li>HOME</li>
-                </a>
+                </Link>
                 <ul className='header-links'>
-                    {loggedIn ? 
+                    {user.isAuthenticated ? 
                         <>
-                            <a href='/categories/categories.html' className='link header-link'>
+                            <Link to='/categories' className='link header-link'>
                                 <li>Learn</li>
-                            </a>
-                            <a href='/' className='link header-link' id='log-out'>
+                            </Link>
+                            <Link to='/' className='link header-link' id='log-out'>
                                 <li>Log Out</li>
-                            </a>
+                            </Link>
                         </>
                     : 
                         <>
-                            <a href='./signUp.html' className='header-link link'>
+                            <Link to='/signUp' className='header-link link'>
                                 <li>Sign Up</li>
-                            </a>
-                            <a href='./logIn.html' className='header-link link'>
+                            </Link>
+                            <Link to='/logIn' className='header-link link'>
                                 <li>Log In</li>
-                            </a> 
+                            </Link>
                         </>
                     }
                 </ul>
