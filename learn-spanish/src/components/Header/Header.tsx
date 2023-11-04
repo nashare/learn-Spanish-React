@@ -1,34 +1,37 @@
 import React from 'react';
 import './Header.css';
 import { Link } from "react-router-dom";
-import { useUser } from '../../utils/userContext';
+import { useUser } from '../../models/userContext';
 
 export const Header = () => {
     const { user } = useUser();
+    const handleLogOut = () => {
+        user.logOut();
+    };
     return (
         <header className='header'>
             <nav className='header-nav'>
-                <Link to='/' className='header-link link '>
-                    <li>HOME</li>
-                </Link>
+                <li className='header-link link'><Link to='/' className='link'>
+                    HOME
+                </Link ></li>
                 <ul className='header-links'>
                     {user.isAuthenticated ? 
                         <>
-                            <Link to='/categories' className='link header-link'>
-                                <li>Learn</li>
-                            </Link>
-                            <Link to='/' className='link header-link' id='log-out'>
-                                <li>Log Out</li>
-                            </Link>
+                            <li className='link header-link'><Link to='/categories' className='link'>
+                                Learn
+                            </Link></li>
+                            <li className='link header-link'><Link to='/' onClick={handleLogOut} className='link'>
+                                Log Out
+                            </Link></li>
                         </>
                     : 
                         <>
-                            <Link to='/signUp' className='header-link link'>
-                                <li>Sign Up</li>
-                            </Link>
-                            <Link to='/logIn' className='header-link link'>
-                                <li>Log In</li>
-                            </Link>
+                            <li className='header-link link'><Link to='/signUp' className='link'>
+                                Sign Up
+                            </Link></li>
+                            <li className='header-link link'><Link to='/logIn' className='link'>
+                                Log In
+                            </Link></li>
                         </>
                     }
                 </ul>

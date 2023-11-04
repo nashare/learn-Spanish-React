@@ -2,9 +2,11 @@ import React from 'react';
 
 interface FormPasswordProps {
     shouldHideRules: boolean;
+    value: string;
+    onChange: (value: string) => void;
 }
 
-export const FormPassword = ({ shouldHideRules }: FormPasswordProps) => {
+export const FormPassword = ({ value, onChange, shouldHideRules }: FormPasswordProps) => {
 
     const authRulesClass:string = shouldHideRules ? 'auth-rules-hidden' : 'auth-rules';
 
@@ -21,7 +23,9 @@ export const FormPassword = ({ shouldHideRules }: FormPasswordProps) => {
                     <li>symbol (e.g., !, @, #, $, %)</li>
                 </ul>
             </div>
-            <input type='password' id='password' name='password' required className='auth-input'></input>
+            <input type='password' id='password' name='password' 
+                value={value} onChange={(e) => onChange(e.target.value)} 
+                required className='auth-input'></input>
             <span className='error-message margin-1-0' id='passwordError'></span>
         </div>
     );

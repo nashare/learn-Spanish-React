@@ -10,7 +10,7 @@ export const CategoriesPage = () => {
                 {Object.keys(words).map((category) => (
                     <li key={category} className='category' id={`content-${category}`}>
                         <Link to={`/categories/${category}`} className='link categories-link'>
-                            <img src={`../../content/${category}/${category}.jpg`} alt={category} className='border-bottom-straight' />
+                            <img src={`/${category}/${category}.jpg`} alt={category} className='border-bottom-straight' />
                             <p id={`text-${category}`} className='categories-name'>{category.toUpperCase()}</p>
                         </Link>
                         <div className='categories-links'>

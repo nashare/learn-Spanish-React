@@ -5,11 +5,15 @@ export class User {
         this.isAuthenticated = false;
     }
 
-    logIn(): void {
+    signUp(email: string, password: string): void {
         this.isAuthenticated = true;
     }
 
-    logOut(): void {
+    logIn(email: string, password: string): void {
+        this.isAuthenticated = true;
+    }
+
+    logOut(): void{
         this.isAuthenticated = false;
     }
 

@@ -108,7 +108,7 @@ input {
     }
 }
 
-.border-buttom-straight {
+.border-bottom-straight {
     border-radius: 3vmin 3vmin 0 0;
     border-bottom: none;
 }

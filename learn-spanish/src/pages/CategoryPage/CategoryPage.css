@@ -1,0 +1,31 @@
+.word-container {
+    display: grid;
+    grid-template-columns: 5fr 4fr 1fr;
+    gap: 2vmin;
+    align-items: center;
+}
+
+.word-text {
+    font-weight: bold;
+    font-size: 3vmin;
+}
+
+.category-practice {
+    margin: 3vmin;
+}
+
+.category-container {
+    padding: 0;
+    width: 80%;
+    margin: 4vmin;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vmin;
+}
+
+@media (max-width: 1024px) {
+    .category-container {
+        width: 60%;
+        grid-template-columns: 1fr;
+    }
+}
