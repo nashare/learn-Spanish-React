@@ -24,10 +24,10 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         {Object.keys(words).map((category) => (
           <>
-          <Route key={category} path={`/categories/:${category}`} element={<CategoryPage />} />
-          <Route key={category} path={`/categories/:${category}/test`} element={<TestPage />} />
-          <Route key={category} path={`/categories/:${category}/test/result`} element={<TestResultPage />} />
-          <Route key={category} path={`/categories/:${category}/test/complete`} element={<TestCompletePage />} />
+          <Route key={category} path="/categories/:category" element={<CategoryPage />} />
+          <Route key={category} path="/categories/:category/test" element={<TestPage />} />
+          <Route key={category} path="/categories/:category/test/result" element={<TestResultPage />} />
+          <Route key={category} path="/categories/:category/test/complete" element={<TestCompletePage />} />
           </>
         ))}
       </Routes>
