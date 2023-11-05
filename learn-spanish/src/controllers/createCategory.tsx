@@ -1,6 +1,8 @@
 import { normalizeString } from "./normalizeString";
+import { playAudio } from "./playAudio";
 
 export function createCategory(words: string[], category: string): JSX.Element[] {
+    
     return words.map((word: string) => {
         const wordForPath = normalizeString(word);
         return (
@@ -10,7 +12,7 @@ export function createCategory(words: string[], category: string): JSX.Element[]
                 <audio id={`${wordForPath}_audio`}>
                     <source src={`/${category}/${wordForPath}/${wordForPath}.mp3`} type="audio/mp3" />
                 </audio>
-                <button id={`${wordForPath}`} className="button-yellow">Play</button>
+                <button id={`${wordForPath}`} onClick={() => playAudio(wordForPath)} className="button-yellow">Play</button>
             </section>
         );
     });
