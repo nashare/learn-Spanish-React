@@ -1,12 +1,10 @@
-import "./LogInPage.css";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FormEmail } from "../../components/AuthForm/FormEmail";
 import { FormPassword } from "../../components/AuthForm/FormPassword";
 import { FormButton } from "../../components/AuthForm/FormButton";
-import { passwordValidation } from '../../controllers/formValidation/passwordValidation';
-import { emailValidation } from '../../controllers/formValidation/emailValidation';
-import { userInst } from '../../models/user';
+import { handleLogIn } from "../../controllers/auth/handleLogIn";
+import "./LogInPage.css";
 
 interface LogInPageProps {
     setIsAuthenticated: (authState: boolean) => void;
@@ -19,15 +17,11 @@ export const LogInPage = ({ setIsAuthenticated }: LogInPageProps) => {
     const [emailError, setEmailError] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        const emailValidationResult = emailValidation(email, setEmailError);
-        const passwordValidationResult = passwordValidation(password, setPasswordError);
-        if (!emailValidationResult || !passwordValidationResult) {
-            return;
-        } else {
-            userInst.logIn(email, password, setErrorMessage, setIsAuthenticated);
-        }
+        handleLogIn(email, password,
+            setEmailError, setPasswordError, setErrorMessage, setIsAuthenticated);
     }
     const errorClass: string = errorMessage !== "" ? 'error-message' : 'hidden';
 

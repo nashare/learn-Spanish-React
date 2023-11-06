@@ -4,10 +4,7 @@ import { FormEmail } from "../../components/AuthForm/FormEmail";
 import { FormPassword } from "../../components/AuthForm/FormPassword";
 import { FormButton } from "../../components/AuthForm/FormButton";
 import { FormPasswordConfirm } from "../../components/AuthForm/FormPassWordConfirm";
-import { passwordValidation } from '../../controllers/formValidation/passwordValidation';
-import { passwordConfirmValidation } from '../../controllers/formValidation/passwordConfirmValidation';
-import { emailValidation } from '../../controllers/formValidation/emailValidation';
-import { userInst } from '../../models/user';
+import { handleSignUp } from '../../controllers/auth/handleSignUp';
 
 interface SignUpPageProps {
     setIsAuthenticated: (authState: boolean) => void;
@@ -22,16 +19,11 @@ export const SignUpPage = ({ setIsAuthenticated }: SignUpPageProps) => {
     const [passwordConfirmError, setPasswordConfirmError] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string>('');
     const hideRules:boolean = false;
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
-        const emailValidationResult = emailValidation(email, setEmailError);
-        const passwordValidationResult = passwordValidation(password, setPasswordError);
-        const passwordConfirmValidationResult = passwordConfirmValidation(password, passwordConfirm, setPasswordConfirmError);
-        if (!emailValidationResult || !passwordValidationResult || !passwordConfirmValidationResult) {
-            return;
-        } else {
-            userInst.signUp(email, password, setErrorMessage, setIsAuthenticated);
-        }
+        handleSignUp(email, password, passwordConfirm, setEmailError, 
+            setPasswordError, setPasswordConfirmError, setErrorMessage, setIsAuthenticated);
     }
 
     const errorClass: string = errorMessage !== "" ? 'error-message' : 'hidden';

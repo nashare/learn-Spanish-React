@@ -14,9 +14,6 @@ export class UserClient {
                     categories: []
                 }),
             });
-            if (!response.ok) {
-                throw new Error(`Status: ${response.status}`);
-            }
             return await response.json();
         } catch (error) {
             console.error('Error during sign up:', error);

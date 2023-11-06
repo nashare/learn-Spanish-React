@@ -14,7 +14,7 @@ export const FormPassword = ({ value, onChange, shouldHideRules, passwordError }
     
     return (
         <div className='form-group'>
-            <label htmlFor='password' className='auth-label'>Password:</label>
+            <label htmlFor='passwordInput' className='auth-label'>Password:</label>
             <div className={authRulesClass}>
                 <p className='auth-rules-p'>Make sure your password includes:</p>
                 <ul className='auth-rules-list'>
@@ -25,7 +25,7 @@ export const FormPassword = ({ value, onChange, shouldHideRules, passwordError }
                     <li>symbol (e.g., !, @, #, $, %)</li>
                 </ul>
             </div>
-            <input type='password' name='password' 
+            <input type='password' name='password' id='passwordInput'
                 value={value} onChange={(e) => onChange(e.target.value)} 
                 required className='auth-input'></input>
             <span className={errorClass}>{passwordError}</span>

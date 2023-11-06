@@ -13,14 +13,13 @@ export class User {
         return this._isAuthenticated;
     }
     async signUp(email: string, password: string,
-        setErrorMessage: (authState: string) => void,
+        setErrorMessage: (error: string) => void,
         setIsAuthenticated: (authState: boolean) => void) {
         const result = await UserClient.post(email, password);
-        if (result[0]) {
-            this._categories = result[0].categories;
-            this._userId = result[0].id;
+        if (Object.keys(result).length > 0) {
+            this._categories = result.categories;
+            this._userId = result.id;
             this._isAuthenticated = true;
-            console.log(this._categories, this._userId, this._isAuthenticated);
             setErrorMessage('');
             setIsAuthenticated(this._isAuthenticated);
         } else {
@@ -29,7 +28,7 @@ export class User {
     }
 
     async logIn(email: string, password: string, 
-        setErrorMessage: (authState: string) => void,
+        setErrorMessage: (error: string) => void,
         setIsAuthenticated: (authState: boolean) => void) {
         const result = await UserClient.get(email, password);
         if (result[0]) {
@@ -45,7 +44,6 @@ export class User {
 
     async updateCategories() {
         const result = await UserClient.patch(this._categories, this._userId);
-        console.log(result);
         this._isAuthenticated = true;
     }
 

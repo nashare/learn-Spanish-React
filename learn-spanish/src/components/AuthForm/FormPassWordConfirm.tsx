@@ -12,8 +12,8 @@ export const FormPasswordConfirm = ({ value, onChange, passwordConfirmError }: F
 
     return (
         <div className='form-group'>
-            <label htmlFor='password' className='auth-label'>Confirm password:</label>
-            <input type='password' name='passwordConfirm' 
+            <label htmlFor='passwordConfirmInput' className='auth-label'>Confirm password:</label>
+            <input type='password' name='passwordConfirm' id='passwordConfirmInput'
                 className='auth-input' required
                 value={value} onChange={(e) => onChange(e.target.value)} ></input>
             <span className={errorClass}>{passwordConfirmError}</span>
