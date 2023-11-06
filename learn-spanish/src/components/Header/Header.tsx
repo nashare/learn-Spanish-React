@@ -1,12 +1,17 @@
-import React from 'react';
-import './Header.css';
+import { Dispatch, SetStateAction } from 'react';
 import { Link } from "react-router-dom";
-import { useUser } from '../../models/userContext';
+import { User } from '../../models/user';
+import './Header.css';
 
-export const Header = () => {
-    const { user } = useUser();
+interface HeaderProps {
+    user: User;
+    setUser: Dispatch<SetStateAction<User>>;
+}
+
+export const Header = ({ user, setUser }: HeaderProps) => {
     const handleLogOut = () => {
         user.logOut();
+        setUser(new User());
     };
     return (
         <header className='header'>

@@ -1,17 +1,21 @@
 import "./LogInPage.css";
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormEmail } from "../../components/AuthForm/FormEmail";
 import { FormPassword } from "../../components/AuthForm/FormPassword";
 import { FormButton } from "../../components/AuthForm/FormButton";
 import { passwordValidation } from '../../controllers/formValidation/passwordValidation';
 import { emailValidation } from '../../controllers/formValidation/emailValidation';
-import { useUser } from "../../models/userContext";
+import { User } from '../../models/user';
 
-export const LogInPage = () => {
+interface LogInPageProps {
+    user: User;
+    setUser: Dispatch<SetStateAction<User>>;
+}
+
+export const LogInPage = ({ user, setUser }: LogInPageProps) => {
     const hideRules: boolean = true;
     const navigate = useNavigate();
-    const { user, setUser } = useUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -20,8 +24,10 @@ export const LogInPage = () => {
             return;
         } else {
             try {
-                await user.logIn(email, password);
-                navigate('/');
+                user.logIn(email, password);
+                console.log(user);
+                setUser(user);
+                navigate('/categories');
             } catch (error) {
 
             }

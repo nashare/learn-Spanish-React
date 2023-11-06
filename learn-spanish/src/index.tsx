@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from './models/userContext';
 import './index.css';
 
 const root = ReactDOM.createRoot(
@@ -11,10 +10,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </UserProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );

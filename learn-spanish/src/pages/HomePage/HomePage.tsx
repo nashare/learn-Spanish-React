@@ -1,10 +1,12 @@
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import { useUser } from "../../models/userContext";
+import { User } from '../../models/user'; // assuming the User class is exported
 
+interface HomePageProps {
+    user: User;
+}
 
-export const HomePage = () => {
-    const { user } = useUser();
+export const HomePage = ({ user }: HomePageProps) => {
     return (
         <main className="main">
         <section className='homepage-content'>

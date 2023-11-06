@@ -2,7 +2,7 @@ export class User {
     isAuthenticated: boolean;
 
     constructor() {
-        this.isAuthenticated = false;
+        this.isAuthenticated = true;
     }
 
     signUp(email: string, password: string): void {
@@ -10,6 +10,7 @@ export class User {
     }
 
     logIn(email: string, password: string): void {
+        console.log("loggin in");
         this.isAuthenticated = true;
     }
 

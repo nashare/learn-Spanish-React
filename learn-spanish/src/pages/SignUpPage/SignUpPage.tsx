@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormEmail } from "../../components/AuthForm/FormEmail";
 import { FormPassword } from "../../components/AuthForm/FormPassword";
@@ -7,11 +7,14 @@ import { FormPasswordConfirm } from "../../components/AuthForm/FormPassWordConfi
 import { passwordValidation } from '../../controllers/formValidation/passwordValidation';
 import { passwordConfirmValidation } from '../../controllers/formValidation/passwordConfirmValidation';
 import { emailValidation } from '../../controllers/formValidation/emailValidation';
-import { useUser } from "../../models/userContext";
+import { User } from '../../models/user';
 
+interface SignUpPageProps {
+    user: User;
+    setUser: Dispatch<SetStateAction<User>>;
+}
 
-export const SignUpPage = () => {
-    const { user, setUser } = useUser();
+export const SignUpPage = ({ user, setUser }: SignUpPageProps) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +28,7 @@ export const SignUpPage = () => {
             try {
                 await user.signUp(email, password);
                 setUser(user);
-                navigate('/');
+                navigate('/categories');
             } catch (error) {
                 
             }
