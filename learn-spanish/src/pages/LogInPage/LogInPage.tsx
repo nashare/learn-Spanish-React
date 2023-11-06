@@ -1,19 +1,18 @@
 import "./LogInPage.css";
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormEmail } from "../../components/AuthForm/FormEmail";
 import { FormPassword } from "../../components/AuthForm/FormPassword";
 import { FormButton } from "../../components/AuthForm/FormButton";
 import { passwordValidation } from '../../controllers/formValidation/passwordValidation';
 import { emailValidation } from '../../controllers/formValidation/emailValidation';
-import { User } from '../../models/user';
+import { userInst } from '../../models/user';
 
 interface LogInPageProps {
-    user: User;
-    setUser: Dispatch<SetStateAction<User>>;
+    setIsAuthenticated: (authState: boolean) => void;
 }
 
-export const LogInPage = ({ user, setUser }: LogInPageProps) => {
+export const LogInPage = ({ setIsAuthenticated }: LogInPageProps) => {
     const hideRules: boolean = true;
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -24,9 +23,8 @@ export const LogInPage = ({ user, setUser }: LogInPageProps) => {
             return;
         } else {
             try {
-                user.logIn(email, password);
-                console.log(user);
-                setUser(user);
+                userInst.logIn(email, password);
+                setIsAuthenticated(userInst.isAuthenticated);
                 navigate('/categories');
             } catch (error) {
 

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 
 export const CategoriesPage = () => {
+    // const [completedCategories, setCompletedCategories] = useState(userInst.categories);
+
     return (
         <main className="main">
             <ul className="categories-container">

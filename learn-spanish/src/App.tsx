@@ -13,49 +13,50 @@ import { TestPage } from './pages/TestPage/TestPage';
 import { TestCompletePage } from './pages/TestCompletePage/TestCompletePage';
 import { TestResultPage } from './pages/TestResultPage/TestResultPage';
 import { CategoryPage } from './pages/CategoryPage/CategoryPage';
-import { userClass } from './models/user';
+import { userInst } from './models/user';
 
 function App() {
-  const [user, setUser] = useState(userClass);
+  const [isAuthenticated, setIsAuthenticated] = useState(userInst.isAuthenticated);
+
   return (
     <>
-      <Header user={user} setUser={setUser} />
+      <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
       <Routes>
-        <Route path="/" element={<HomePage user={user} />} />
+        <Route path="/" element={<HomePage isAuthenticated={isAuthenticated} />} />
         <Route path="/login" element={
-          <ProtectedRouteAuth user={user}>
-            <LogInPage user={user} setUser={setUser} />
+          <ProtectedRouteAuth isAuthenticated={isAuthenticated}>
+            <LogInPage setIsAuthenticated={setIsAuthenticated} />
           </ProtectedRouteAuth>
         } />
         <Route path="/signup" element={
-          <ProtectedRouteAuth user={user}>
-            <SignUpPage user={user} setUser={setUser} />
+          <ProtectedRouteAuth isAuthenticated={isAuthenticated}>
+            <SignUpPage setIsAuthenticated={setIsAuthenticated} />
           </ProtectedRouteAuth>
         } />
         <Route path="/categories" element={
-          <ProtectedRouteCateg user={user}>
+          <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
             <CategoriesPage />
           </ProtectedRouteCateg>
         } />
         {Object.keys(words).map((category) => (
           <>
             <Route key={category} path="/categories/:category" element={
-              <ProtectedRouteCateg user={user}>
+              <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
                 <CategoryPage />
               </ProtectedRouteCateg>
             } />
             <Route key={category} path="/categories/:category/test" element={
-              <ProtectedRouteCateg user={user}>
+              <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
                 <TestPage />
               </ProtectedRouteCateg>
             } />
             <Route key={category} path="/categories/:category/test/result" element={
-              <ProtectedRouteCateg user={user}>
+              <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
                 <TestResultPage />
               </ProtectedRouteCateg>
             } />
             <Route key={category} path="/categories/:category/test/complete" element={
-              <ProtectedRouteCateg user={user}>
+              <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
                 <TestCompletePage />
               </ProtectedRouteCateg>
             } />

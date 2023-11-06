@@ -1,23 +1,25 @@
 export class User {
-    isAuthenticated: boolean;
+    private _isAuthenticated: boolean = false;
 
-    constructor() {
-        this.isAuthenticated = true;
+    get isAuthenticated(): boolean {
+        return this._isAuthenticated;
     }
 
     signUp(email: string, password: string): void {
-        this.isAuthenticated = true;
+        console.log("signed up");
+        this._isAuthenticated = true;
     }
 
     logIn(email: string, password: string): void {
         console.log("loggin in");
-        this.isAuthenticated = true;
+        this._isAuthenticated = true;
     }
 
-    logOut(): void{
-        this.isAuthenticated = false;
+    logOut(setIsAuthenticated: (authState: boolean) => void): void {
+        this._isAuthenticated = false;
+        setIsAuthenticated(this._isAuthenticated);
     }
 
 }
 
-export const userClass = new User();
+export const userInst = new User();

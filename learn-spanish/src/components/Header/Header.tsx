@@ -1,18 +1,18 @@
-import { Dispatch, SetStateAction } from 'react';
 import { Link } from "react-router-dom";
-import { User } from '../../models/user';
 import './Header.css';
+import { userInst } from "../../models/user";
 
 interface HeaderProps {
-    user: User;
-    setUser: Dispatch<SetStateAction<User>>;
+    isAuthenticated: boolean;
+    setIsAuthenticated: (authState: boolean) => void;
 }
 
-export const Header = ({ user, setUser }: HeaderProps) => {
-    const handleLogOut = () => {
-        user.logOut();
-        setUser(new User());
+export const Header = ({ isAuthenticated, setIsAuthenticated }: HeaderProps) => {
+    
+    const handleLogout = () => {
+        userInst.logOut(setIsAuthenticated);
     };
+
     return (
         <header className='header'>
             <nav className='header-nav'>
@@ -20,12 +20,12 @@ export const Header = ({ user, setUser }: HeaderProps) => {
                     HOME
                 </Link ></li>
                 <ul className='header-links'>
-                    {user.isAuthenticated ? 
+                    {isAuthenticated ? 
                         <>
                             <li className='link header-link'><Link to='/categories' className='link'>
                                 Learn
                             </Link></li>
-                            <li className='link header-link'><Link to='/' onClick={handleLogOut} className='link'>
+                            <li className='link header-link'><Link to='/' onClick={handleLogout} className='link'>
                                 Log Out
                             </Link></li>
                         </>

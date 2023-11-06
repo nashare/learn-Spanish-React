@@ -1,14 +1,13 @@
 import { Navigate } from 'react-router-dom';
-import { User } from "../../models/user";
 
 interface ProtectedRouteCategProps {
-    user: User;
+    isAuthenticated: boolean;
     children: JSX.Element;
 }
 
-export const ProtectedRouteCateg = ({ user, children }: ProtectedRouteCategProps) => {
+export const ProtectedRouteCateg = ({ isAuthenticated, children }: ProtectedRouteCategProps) => {
 
-    if (!user.isAuthenticated) {
+    if (!isAuthenticated) {
         return <Navigate to="/login" replace />;
     }
 

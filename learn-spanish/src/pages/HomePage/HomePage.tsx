@@ -1,12 +1,11 @@
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import { User } from '../../models/user'; // assuming the User class is exported
 
 interface HomePageProps {
-    user: User;
+    isAuthenticated: boolean;
 }
 
-export const HomePage = ({ user }: HomePageProps) => {
+export const HomePage = ({ isAuthenticated }: HomePageProps) => {
     return (
         <main className="main">
         <section className='homepage-content'>
@@ -18,7 +17,7 @@ export const HomePage = ({ user }: HomePageProps) => {
                     <img className='homepage-image' alt="girl laptop cat gato" src="/home/home.jpg"></img>
             </div>
         </section>
-            {user.isAuthenticated ?
+            {isAuthenticated ?
                 <li className="button-yellow margin-1-4"><Link to='/categories' className="link">
                     Start Learning
                 </Link></li>

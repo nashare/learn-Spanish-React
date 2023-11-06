@@ -1,14 +1,13 @@
 import { Navigate } from 'react-router-dom';
-import { User } from "../../models/user";
 
 interface ProtectedRouteAuthProps {
-    user: User;
+    isAuthenticated: boolean;
     children: JSX.Element;
 }
 
-export const ProtectedRouteAuth = ({ user, children }: ProtectedRouteAuthProps) => {
+export const ProtectedRouteAuth = ({ isAuthenticated, children }: ProtectedRouteAuthProps) => {
 
-    if (user.isAuthenticated) {
+    if (isAuthenticated) {
         return <Navigate to="/categories" replace />;
     }
 

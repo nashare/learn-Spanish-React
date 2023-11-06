@@ -3,7 +3,7 @@ type Words = {
 }
 
 export const words:Words = {
-    fruits: ['manzana', 'albaricoque', 'banana',
+    fruits: ['manzana', 'frambuesa', 'banana',
         'cereza', 'uva', 'fresa', 'naranja', 'limón', 'durazno', 'pera'],
     colors: ['negro', 'verde', 'azul',
         'rojo', 'amarillo', 'blanco', 'rosa', 'naranja', 'morado', 'marrón'],
