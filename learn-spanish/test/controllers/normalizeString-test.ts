@@ -1,5 +1,5 @@
 import { normalizeString } from "../../src/controllers/normalizeString";
-import '@types/jest';
+import 'jest';
 
 describe('normalizeString', () => {
     const testCases = [

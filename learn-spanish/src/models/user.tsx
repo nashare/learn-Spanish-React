@@ -44,6 +44,7 @@ export class User {
 
     async updateCategories() {
         const result = await UserClient.patch(this._categories, this._userId);
+        console.log(result);
         this._isAuthenticated = true;
     }
 
