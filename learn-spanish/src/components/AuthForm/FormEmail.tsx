@@ -1,18 +1,18 @@
-import React from 'react';
-
 type FormEmailProps = {
     value: string;
     onChange: (value: string) => void;
+    emailError: string;
 };
 
-export const FormEmail = ({ value, onChange }: FormEmailProps) => {
+export const FormEmail = ({ value, onChange, emailError }: FormEmailProps) => {
+    const errorClass: string = emailError !== "" ? 'error-message margin-1-0' : 'hidden';
     return (
         <div className='form-group'>
             <label htmlFor='email' className='auth-label'>Email:</label>
-            <input type='email' id='email' name='email' autoComplete="email" 
+            <input type='email' name='email' autoComplete="email" 
                 value={value} onChange={(e) => onChange(e.target.value)} required 
                 className='auth-input'></input>
-            <span className='error-message margin-1-0' id='emailError'>Please enter a valid email.</span>
+            <span className={errorClass}>{emailError}</span>
         </div>
     );
 }

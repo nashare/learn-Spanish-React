@@ -1,16 +1,22 @@
 import "./CategoriesPage.css";
 import { words } from "../../content/words";
 import { Link } from "react-router-dom";
+import { userInst } from '../../models/user';
 
 
 export const CategoriesPage = () => {
-    // const [completedCategories, setCompletedCategories] = useState(userInst.categories);
-
+    function applyFilter(category: string): string {
+        if (userInst.categories.includes(category)) {
+            return "category categories-filter"
+        } else {
+            return "category"
+        }
+    }
     return (
         <main className="main">
             <ul className="categories-container">
                 {Object.keys(words).map((category) => (
-                    <li key={category} className='category' id={`content-${category}`}>
+                    <li key={category} className={applyFilter(category)}>
                         <Link to={`/categories/${category}`} className='link categories-link'>
                             <img src={`/${category}/${category}.jpg`} alt={category} className='border-bottom-straight' />
                             <p id={`text-${category}`} className='categories-name'>{category.toUpperCase()}</p>

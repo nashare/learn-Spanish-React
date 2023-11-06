@@ -3,16 +3,20 @@ import React from 'react';
 type FormPasswordConfirmProps = {
     value: string;
     onChange: (value: string) => void;
+    passwordConfirmError: string;
 };
 
-export const FormPasswordConfirm = ({ value, onChange }: FormPasswordConfirmProps) => {
+export const FormPasswordConfirm = ({ value, onChange, passwordConfirmError }: FormPasswordConfirmProps) => {
+
+    const errorClass: string = passwordConfirmError !== "" ? 'error-message margin-1-0' : 'hidden';
+
     return (
         <div className='form-group'>
             <label htmlFor='password' className='auth-label'>Confirm password:</label>
-            <input type='password' id='passwordConfirm' name='passwordConfirm' 
+            <input type='password' name='passwordConfirm' 
                 className='auth-input' required
                 value={value} onChange={(e) => onChange(e.target.value)} ></input>
-            <span className='error-message margin-1-0' id='passwordConfirmError'>Passwords do not match.</span>
+            <span className={errorClass}>{passwordConfirmError}</span>
         </div>
     );
 }

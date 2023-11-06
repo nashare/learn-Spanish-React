@@ -14,18 +14,21 @@ interface LogInPageProps {
 
 export const LogInPage = ({ setIsAuthenticated }: LogInPageProps) => {
     const hideRules: boolean = true;
-    const [errorMessage, setErrorMessage] = useState("");
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [emailError, setEmailError] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [passwordError, setPasswordError] = useState<string>('');
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        if (!emailValidation(email) || !passwordValidation(password)) {
+        const emailValidationResult = emailValidation(email, setEmailError);
+        const passwordValidationResult = passwordValidation(password, setPasswordError);
+        if (!emailValidationResult || !passwordValidationResult) {
             return;
         } else {
             userInst.logIn(email, password, setErrorMessage, setIsAuthenticated);
         }
     }
-    console.log(errorMessage);
     const errorClass: string = errorMessage !== "" ? 'error-message' : 'hidden';
 
     return (
@@ -35,8 +38,8 @@ export const LogInPage = ({ setIsAuthenticated }: LogInPageProps) => {
                 <p>Don't have an account? <Link to='/signup'>Sign up</Link> now.</p>
                 <div className='form-container'>
                     <form className='authForm flex-column-center' onSubmit={handleSubmit}>
-                        <FormEmail value={email} onChange={setEmail} />
-                        <FormPassword value={password} onChange={setPassword} shouldHideRules={hideRules} />
+                        <FormEmail value={email} onChange={setEmail} emailError={emailError} />
+                        <FormPassword value={password} onChange={setPassword} shouldHideRules={hideRules} passwordError={passwordError}/>
                         <FormButton />
                         <div className={errorClass}>{errorMessage}</div>
                     </form>

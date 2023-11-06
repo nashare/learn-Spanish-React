@@ -4,12 +4,14 @@ interface FormPasswordProps {
     shouldHideRules: boolean;
     value: string;
     onChange: (value: string) => void;
+    passwordError: string;
 }
 
-export const FormPassword = ({ value, onChange, shouldHideRules }: FormPasswordProps) => {
+export const FormPassword = ({ value, onChange, shouldHideRules, passwordError }: FormPasswordProps) => {
 
     const authRulesClass:string = shouldHideRules ? 'hidden' : 'auth-rules';
-
+    const errorClass: string = passwordError !== "" ? 'error-message margin-1-0' : 'hidden';
+    
     return (
         <div className='form-group'>
             <label htmlFor='password' className='auth-label'>Password:</label>
@@ -23,10 +25,10 @@ export const FormPassword = ({ value, onChange, shouldHideRules }: FormPasswordP
                     <li>symbol (e.g., !, @, #, $, %)</li>
                 </ul>
             </div>
-            <input type='password' id='password' name='password' 
+            <input type='password' name='password' 
                 value={value} onChange={(e) => onChange(e.target.value)} 
                 required className='auth-input'></input>
-            <span className='error-message margin-1-0' id='passwordError'></span>
+            <span className={errorClass}>{passwordError}</span>
         </div>
     );
 }
