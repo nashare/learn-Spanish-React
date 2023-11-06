@@ -8,7 +8,7 @@ interface FormPasswordProps {
 
 export const FormPassword = ({ value, onChange, shouldHideRules }: FormPasswordProps) => {
 
-    const authRulesClass:string = shouldHideRules ? 'auth-rules-hidden' : 'auth-rules';
+    const authRulesClass:string = shouldHideRules ? 'hidden' : 'auth-rules';
 
     return (
         <div className='form-group'>

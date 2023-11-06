@@ -1,6 +1,6 @@
 import "./LogInPage.css";
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FormEmail } from "../../components/AuthForm/FormEmail";
 import { FormPassword } from "../../components/AuthForm/FormPassword";
 import { FormButton } from "../../components/AuthForm/FormButton";
@@ -14,23 +14,20 @@ interface LogInPageProps {
 
 export const LogInPage = ({ setIsAuthenticated }: LogInPageProps) => {
     const hideRules: boolean = true;
-    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         if (!emailValidation(email) || !passwordValidation(password)) {
             return;
         } else {
-            try {
-                userInst.logIn(email, password);
-                setIsAuthenticated(userInst.isAuthenticated);
-                navigate('/categories');
-            } catch (error) {
-
-            }
+            userInst.logIn(email, password, setErrorMessage, setIsAuthenticated);
         }
     }
+    console.log(errorMessage);
+    const errorClass: string = errorMessage !== "" ? 'error-message' : 'hidden';
+
     return (
         <main className="main">
             <div className='auth-container flex-column-center'>
@@ -41,6 +38,7 @@ export const LogInPage = ({ setIsAuthenticated }: LogInPageProps) => {
                         <FormEmail value={email} onChange={setEmail} />
                         <FormPassword value={password} onChange={setPassword} shouldHideRules={hideRules} />
                         <FormButton />
+                        <div className={errorClass}>{errorMessage}</div>
                     </form>
                 </div>
             </div>

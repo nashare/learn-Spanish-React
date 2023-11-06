@@ -17,7 +17,7 @@ import { userInst } from './models/user';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(userInst.isAuthenticated);
-
+                                                                                           
   return (
     <>
       <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
