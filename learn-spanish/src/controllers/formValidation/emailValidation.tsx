@@ -1,10 +1,14 @@
-export function emailValidation(email: string, setEmailError: (error: string) => void): boolean {
+interface ValidationResult {
+    emailIsValid: boolean;
+    emailErrorMessage: string;
+}
+
+export function emailValidation(email: string): ValidationResult {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const validationRes = emailRegex.test(email);
-    if (!validationRes) {
-        setEmailError("Please enter a valid email.");
-    } else {
-        setEmailError("");
+    const emailIsValid = emailRegex.test(email);
+    let emailErrorMessage: string = "";
+    if (!emailIsValid) {
+        emailErrorMessage = "Please enter a valid email.";
     }
-    return validationRes;
+    return { emailIsValid, emailErrorMessage };
 }

@@ -3,19 +3,24 @@ import { passwordValidation } from "../formValidation/passwordValidation";
 import { passwordConfirmValidation } from "../formValidation/passwordConfirmValidation";
 import { userInst } from "../../models/user";
 
-export function handleSignUp(email: string, password: string, passwordConfirm: string,
+export async function handleSignUp(email: string, password: string, passwordConfirm: string,
     setEmailError: (error: string) => void,
     setPasswordError: (error: string) => void,
     setPasswordConfirmError: (error: string) => void,
     setErrorMessage: (error: string) => void,
-    setIsAuthenticated: (authState: boolean) => void): void {
+    setIsAuthenticated: (authState: boolean) => void) {
 
-    const emailValidationResult: boolean = emailValidation(email, setEmailError);
-    const passwordValidationResult: boolean = passwordValidation(password, setPasswordError);
-    const passwordConfirmValidationResult: boolean = passwordConfirmValidation(password, passwordConfirm, setPasswordConfirmError);
-    if (!emailValidationResult || !passwordValidationResult || !passwordConfirmValidationResult) {
+    const { emailIsValid, emailErrorMessage } = emailValidation(email);
+    setEmailError(emailErrorMessage);
+    const { passwordIsValid, passwordErrorMessage } = passwordValidation(password);
+    setPasswordError(passwordErrorMessage);
+    const { passwordConfirmIsValid, passwordConfirmErrorMessage } = passwordConfirmValidation(password, passwordConfirm);
+    setPasswordConfirmError(passwordConfirmErrorMessage);
+    
+    if (!emailIsValid || !passwordIsValid || !passwordConfirmIsValid) {
         return;
-    } else {
-        userInst.signUp(email, password, setErrorMessage, setIsAuthenticated);
     }
+    const { errorMessage, authStatus } = await userInst.signUp(email, password);
+    setErrorMessage(errorMessage);
+    setIsAuthenticated(authStatus);
 }

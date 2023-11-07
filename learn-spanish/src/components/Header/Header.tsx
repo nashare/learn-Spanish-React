@@ -9,8 +9,8 @@ interface HeaderProps {
 
 export const Header = ({ isAuthenticated, setIsAuthenticated }: HeaderProps) => {
     
-    const handleLogout = () => {
-        userInst.logOut(setIsAuthenticated);
+    const handleLogout = (): void=> {
+        setIsAuthenticated(userInst.logOut());
     };
 
     return (

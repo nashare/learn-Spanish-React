@@ -1,9 +1,13 @@
-export function passwordConfirmValidation(password: string, passwordConfirm: string, setPasswordConfirmError: (error: string) => void): boolean {
-    const validationRes = password === passwordConfirm;
-    if (!validationRes) {
-        setPasswordConfirmError("Passwords do not match.");
-    } else {
-        setPasswordConfirmError("");
+interface ValidationResult {
+    passwordConfirmIsValid: boolean;
+    passwordConfirmErrorMessage: string;
+}
+
+export function passwordConfirmValidation(password: string, passwordConfirm: string): ValidationResult {
+    const passwordConfirmIsValid = password === passwordConfirm;
+    let passwordConfirmErrorMessage: string = "";
+    if (!passwordConfirmIsValid) {
+        passwordConfirmErrorMessage = "Passwords do not match.";
     }
-    return validationRes;
+    return { passwordConfirmIsValid, passwordConfirmErrorMessage };
 }

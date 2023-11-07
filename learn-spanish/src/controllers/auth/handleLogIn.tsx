@@ -2,17 +2,20 @@ import { emailValidation } from "../formValidation/emailValidation";
 import { passwordValidation } from "../formValidation/passwordValidation";
 import { userInst } from "../../models/user";
 
-export function handleLogIn(email: string, password: string, 
+export async function handleLogIn(email: string, password: string, 
     setEmailError: (error: string) => void, 
     setPasswordError: (error: string) => void, 
     setErrorMessage: (error: string) => void, 
-    setIsAuthenticated: (authState: boolean) => void): void {
+    setIsAuthenticated: (authState: boolean) => void): Promise<undefined> {
     
-    const emailValidationResult: boolean = emailValidation(email, setEmailError);
-    const passwordValidationResult: boolean = passwordValidation(password, setPasswordError);
-    if (!emailValidationResult || !passwordValidationResult) {
+    const { emailIsValid, emailErrorMessage } = emailValidation(email);
+    setEmailError(emailErrorMessage);
+    const { passwordIsValid, passwordErrorMessage } = passwordValidation(password);
+    setPasswordError(passwordErrorMessage);
+    if (!emailIsValid || !passwordIsValid) {
         return;
-    } else {
-        userInst.logIn(email, password, setErrorMessage, setIsAuthenticated);
     }
+    const { errorMessage, authStatus} = await userInst.logIn(email, password);
+    setErrorMessage(errorMessage);
+    setIsAuthenticated(authStatus);
 }

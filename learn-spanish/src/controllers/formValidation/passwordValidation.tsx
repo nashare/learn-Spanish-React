@@ -1,13 +1,16 @@
-import { passwordErrorMessage } from "./passwordErrorMessage";
+import { showPasswordErrorMessage } from "./showPasswordErrorMessage";
 
-export function passwordValidation(password: string, setPasswordError: (error: string) => void): boolean {
+interface ValidationResult {
+    passwordIsValid: boolean;
+    passwordErrorMessage: string;
+}
+
+export function passwordValidation(password: string): ValidationResult {
     const passwordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])(?=.{8,})/;
-    const validationRes = passwordRegex.test(password);
-    if (!validationRes) {
-        passwordErrorMessage(password, setPasswordError);
+    const passwordIsValid = passwordRegex.test(password);
+    let passwordErrorMessage: string = "";
+    if (!passwordIsValid) {
+        passwordErrorMessage = showPasswordErrorMessage(password, passwordErrorMessage);
     }
-    else {
-        setPasswordError("");
-    }
-    return validationRes;
+    return { passwordIsValid, passwordErrorMessage };
 }

@@ -1,5 +1,11 @@
 import { UserClient } from "./UserClient";
 
+interface AuthResult {
+    errorMessage: string;
+    authStatus: boolean;
+}
+
+
 export class User {
     private _isAuthenticated: boolean = false;
     private _categories: string[] = [];
@@ -12,34 +18,30 @@ export class User {
     get isAuthenticated(): boolean {
         return this._isAuthenticated;
     }
-    async signUp(email: string, password: string,
-        setErrorMessage: (error: string) => void,
-        setIsAuthenticated: (authState: boolean) => void) {
+    async signUp(email: string, password: string): Promise<AuthResult> {
         const result = await UserClient.post(email, password);
+        let errorMessage = "";
         if (Object.keys(result).length > 0) {
             this._categories = result.categories;
             this._userId = result.id;
             this._isAuthenticated = true;
-            setErrorMessage('');
-            setIsAuthenticated(this._isAuthenticated);
         } else {
-            setErrorMessage('There was an error during the registration.');
+            errorMessage = 'There was an error during the registration.';
         }
+        return { errorMessage, authStatus: this._isAuthenticated }
     }
 
-    async logIn(email: string, password: string, 
-        setErrorMessage: (error: string) => void,
-        setIsAuthenticated: (authState: boolean) => void) {
+    async logIn(email: string, password: string): Promise<AuthResult> {
         const result = await UserClient.get(email, password);
+        let errorMessage = "";
         if (result[0]) {
             this._categories = result[0].categories;
             this._userId = result[0].id;
             this._isAuthenticated = true;
-            setErrorMessage('');
-            setIsAuthenticated(this._isAuthenticated);
         } else {
-            setErrorMessage('Invalid login credentials. Please try again.');
+            errorMessage = 'Invalid login credentials. Please try again.';
         }
+        return { errorMessage, authStatus: this._isAuthenticated }
     }
 
     async updateCategories() {
@@ -48,11 +50,11 @@ export class User {
         this._isAuthenticated = true;
     }
 
-    logOut(setIsAuthenticated: (authState: boolean) => void): void {
+    logOut(): boolean {
         this._isAuthenticated = false;
         this._categories = [];
         this._userId = null;
-        setIsAuthenticated(this._isAuthenticated);
+        return this._isAuthenticated;
     }
 
 }
