@@ -1,7 +1,7 @@
 import "./CategoriesPage.css";
 import { words } from "../../content/words";
 import { Link } from "react-router-dom";
-import { userInst } from "../../models/User";
+import { userInst } from "../../models/user";
 
 
 export const CategoriesPage = () => {

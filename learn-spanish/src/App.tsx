@@ -13,7 +13,7 @@ import { TestPage } from './pages/TestPage/TestPage';
 import { TestCompletePage } from './pages/TestCompletePage/TestCompletePage';
 import { TestResultPage } from './pages/TestResultPage/TestResultPage';
 import { CategoryPage } from './pages/CategoryPage/CategoryPage';
-import { userInst } from './models/User';
+import { userInst } from './models/user';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(userInst.isAuthenticated);

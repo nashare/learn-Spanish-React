@@ -1,6 +1,6 @@
 import { emailValidation } from "../formValidation/emailValidation";
 import { passwordValidation } from "../formValidation/passwordValidation";
-import { userInst } from "../../models/User";
+import { userInst } from "../../models/user";
 
 export async function handleLogIn(email: string, password: string, 
     setEmailError: (error: string) => void, 

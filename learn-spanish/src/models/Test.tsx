@@ -4,17 +4,32 @@ import { wordAndImagesTest } from "../controllers/test/wordAndImagesTest";
 import { soundAndImagesTest } from "../controllers/test/soundAndImages";
 import { imageAndInputTest } from "../controllers/test/imageAndInput";
 import { imageAndTextsTest } from "../controllers/test/imageAndTexts";
+import { normalizeString } from "../controllers/normalizeString";
 
 
-class Test {
+export class Test {
     category: string;
     words: string[];
-    testNum: number;
+    private _testNum: number;
+    userResult: string[];
+    currentTest: JSX.Element | null;
+    wrongAnswArr: string[];
 
-    constructor(category: string, words: string[], testNum: number = 1) {
+    constructor(category: string, words: string[]) {
         this.category = category;
         this.words = words;
-        this.testNum = testNum;
+        this._testNum = 0;
+        this.userResult = [];
+        this.currentTest = null;
+        this.wrongAnswArr = [];
+    }
+
+    get testNumber(): number {
+        return this._testNum;
+    }
+
+    incrementTestNum(): void {
+        this._testNum += 1;
     }
 
     excludeByIndex(arr: string[], index: number) {
@@ -26,28 +41,37 @@ class Test {
         return shuffle(arrayWithoutTestWord).slice(0, 3);
     }
 
-    createTest() {
+    createTest(setInputVal: (value: string) => void) {
         const testType: number = random(1, 4);
-        const arrayForGuesses: string[] = this.createGuessesArr(this.words, this.testNum-1);
-        const shuffledGuesses = shuffle([...arrayForGuesses, this.words[this.testNum]]);
+        const arrayForGuesses: string[] = this.createGuessesArr(this.words, this._testNum);
+        const shuffledGuesses = shuffle([...arrayForGuesses, this.words[this._testNum]]);
         switch (testType) {
             case 1:
-                return wordAndImagesTest(this.category, this.words[this.testNum], shuffledGuesses);
-                break;
+                this.currentTest =  wordAndImagesTest(this.category, this.words[this._testNum], shuffledGuesses, setInputVal);
+                return this.currentTest;
             case 2:
-                return soundAndImagesTest(this.category, this.words[this.testNum], shuffledGuesses);
-                break;
+                this.currentTest =  soundAndImagesTest(this.category, this.words[this._testNum], shuffledGuesses, setInputVal);
+                return this.currentTest;
             case 3:
-                return imageAndTextsTest(this.category, this.words[this.testNum], shuffledGuesses);
-                break;
+                this.currentTest =  imageAndTextsTest(this.category, this.words[this._testNum], shuffledGuesses, setInputVal);
+                return this.currentTest;
             case 4:
-                return imageAndInputTest(this.category, this.words[this.testNum]);
-                break;
-            default:
-                break;
+                this.currentTest =  imageAndInputTest(this.category, this.words[this._testNum], setInputVal);
+                return this.currentTest;
         }
     }
 
+    setUserResult(inputVal: string): void {
+        this.userResult[this._testNum] = inputVal;
+    }
+
+    checkUserResult(): boolean {
+        const result =  normalizeString(this.userResult[this._testNum]) === normalizeString(this.words[this._testNum]);
+        if (!result) {
+            this.wrongAnswArr.push(this.words[this._testNum]);
+        }
+        return result;
+    }
 }
 
 type TestInstances = {

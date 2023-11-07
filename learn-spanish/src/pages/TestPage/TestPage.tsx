@@ -1,8 +1,41 @@
 import "./TestPage.css";
+import { useState, useEffect, useMemo } from "react";
 import { testInstances } from "../../models/Test";
+import { useNavigate, useParams } from "react-router-dom";
+import { Test } from "../../models/Test";
 
 
 export const TestPage = () => {
-    console.log(testInstances);
-    return <><p>Test</p></>
+    const params = useParams();
+    const navigate = useNavigate();
+    const category: string = params.category as string;
+    const testInst: Test = testInstances[category];
+    const [inputVal, setInputVal] = useState<string>('');
+    const [checkButtinDisabled, setCheckButtonDisabled] = useState<boolean>(true)
+    useEffect(() => {
+        setCheckButtonDisabled(!inputVal.trim());
+    }, [inputVal]);
+
+    const testContent = useMemo(() => {
+        return testInst.createTest(setInputVal);
+    }, [testInst, setInputVal]);
+
+    const handleCheck = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+        event.preventDefault();
+        testInst.setUserResult(inputVal);
+        navigate(`/categories/${category}/test/result`);
+    };
+
+    return (
+        <main className="main">
+        <div className='test test-general flex-column-center'>
+            <p>Test number: {testInst.testNumber + 1}/10</p>
+            {testContent}
+        </div>
+        {checkButtinDisabled ?
+            <button className='test-check button-yellow margin-2' disabled>Check</button> :
+                <a href="/" onClick={handleCheck} className='test-check button-yellow margin-2'>Check</a>
+        }
+        </main>
+    )
 }

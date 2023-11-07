@@ -3,8 +3,14 @@ import { normalizeString } from "../normalizeString";
 export function wordAndImagesTest(
     categoryName: string,
     word: string,
-    shuffledGuesses: string[]
-): JSX.Element {
+    shuffledGuesses: string[],
+    setInputVal: (value: string) => void
+    ): JSX.Element {
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputVal(e.target.value);
+    };
+
     return (
         <section className='test-container flex-column-center'>
             <p className='test-word'>{word}</p>
@@ -16,9 +22,10 @@ export function wordAndImagesTest(
                             name='imageChoice'
                             className='hidden-radio'
                             value={guess}
+                            onChange={handleInputChange}
                         />
                         <img
-                            src={`/content/${categoryName}/${normalizeString(guess)}/${normalizeString(guess)}.jpg`}
+                            src={`/${categoryName}/${normalizeString(guess)}/${normalizeString(guess)}.jpg`}
                             alt={guess}
                         />
                     </label>

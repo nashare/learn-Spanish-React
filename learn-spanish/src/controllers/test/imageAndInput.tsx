@@ -1,9 +1,19 @@
-import { normalizeString } from "../normalizeString"
+import { normalizeString } from "../normalizeString";
 
-export function imageAndInputTest(categoryName: string, word: string): JSX.Element {
+export function imageAndInputTest(
+    categoryName: string,
+    word: string,
+    setInputVal: (value: string) => void
+    ): JSX.Element {
+    
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputVal(e.target.value);
+    };
+
     return (
-            <section className='test-container flex-column-center'>
-            <img alt={categoryName} src={`/content/${categoryName}/${normalizeString(word)}/${normalizeString(word)}.jpg`} />
-            <input type='text' className='test-input' />
-            </section>)
+        <section className='test-container flex-column-center'>
+            <img alt={categoryName} src={`/${categoryName}/${normalizeString(word)}/${normalizeString(word)}.jpg`} /> 
+            <input type='text' className='test-input' onChange={handleInputChange} /> 
+        </section>
+    );
 }
