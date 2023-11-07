@@ -2,8 +2,6 @@ import "./TestResultPage.css";
 import { testInstances } from "../../models/Test";
 import { useNavigate, useParams } from "react-router-dom";
 import { Test } from "../../models/Test";
-import { words } from "../../content/words";
-import { shuffle } from "lodash";
 
 
 export const TestResultPage = () => {
@@ -18,7 +16,6 @@ export const TestResultPage = () => {
             testInst.incrementTestNum();
             navigate(`/categories/${category}/test`);
         } else {
-            testInstances[category] = new Test(category, shuffle(words[category]));
             navigate(`/categories/${category}/test/complete`);
         }
     };

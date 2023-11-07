@@ -3,6 +3,8 @@ import { useState, useEffect, useMemo } from "react";
 import { testInstances } from "../../models/Test";
 import { useNavigate, useParams } from "react-router-dom";
 import { Test } from "../../models/Test";
+import { shuffle } from "lodash";
+import { words } from "../../content/words";
 
 
 export const TestPage = () => {
@@ -10,6 +12,9 @@ export const TestPage = () => {
     const navigate = useNavigate();
     const category: string = params.category as string;
     const testInst: Test = testInstances[category];
+    if (testInst.testNumber > 9) {
+        testInstances[category] = new Test(category, shuffle(words[category]));
+    }
     const [inputVal, setInputVal] = useState<string>('');
     const [checkButtinDisabled, setCheckButtonDisabled] = useState<boolean>(true)
     useEffect(() => {
