@@ -44,11 +44,10 @@ export class User {
         return { errorMessage, authStatus: this._isAuthenticated }
     }
 
-    async updateCategories() {
-        const result = await UserClient.patch(this._categories, this._userId);
-        console.log(result);
-        this._isAuthenticated = true;
-    }
+    // async updateCategories() {
+    //     const result = await UserClient.patch(this._categories, this._userId);
+    //     console.log(result);
+    // }
 
     logOut(): boolean {
         this._isAuthenticated = false;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import './Header.css';
-import { userInst } from "../../models/user";
+import { userInst } from "../../models/User";
 
 interface HeaderProps {
     isAuthenticated: boolean;
