@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Test } from "../../models/Test";
 import { testInstances } from "../../models/Test";
 import { createCategory } from "../../controllers/createCategory";
+import { Link } from "react-router-dom";
 
 export const TestCompletePage = () => {
     const params = useParams();
@@ -24,18 +25,22 @@ export const TestCompletePage = () => {
             {wrongAnswNum === 0 ?
                 <>
                     <p className="test-complete-result"> Your result is 10 / 10. Great job!</p>
-                    <a href='/categories' className='complete-button-container flex-column-center link'>
-                        <button className="button-yellow">Keep learning</button>
-                    </a>
+                    <div className='complete-button-container flex-column-center'>
+                        <Link to='/categories' className='complete-button-practice button-yellow margin-2'>
+                            Keep learning
+                        </Link>
+                    </div>
                 </>
                 :
                 <>
-                    <p className="test-complete-result">Your result is {wrongAnswNum}/10</p>
+                    <p className="test-complete-result">Your result is {10-wrongAnswNum}/10</p>
                     <p className="test-complete-result">Please review {}:</p>
                     {reviewSection}
-                    <a href={`/categories/${category}/test`} className='complete-button-container flex-column-center'>
-                        <button className='complete-button-practice button-yellow margin-2'>Practice</button>
-                    </a>
+                    <div className='complete-button-container flex-column-center'>
+                        <Link to={`/categories/${category}/test`} className='complete-button-container flex-column-center complete-button-practice button-yellow margin-2'>
+                                Practice
+                        </Link>
+                    </div>
                 </>
             }
             </div>
