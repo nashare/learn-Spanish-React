@@ -12,10 +12,8 @@ export const TestCompletePage = () => {
     const testInst: Test = testInstances[category];
     testInst.incrementTestNum();
     const wrongAnswNum: number = testInst.wrongAnswArr.length;
-    let wrongNumbSentencePart: string;
     let reviewSection;
     if (wrongAnswNum > 0) {
-        wrongNumbSentencePart = wrongAnswNum === 1 ? 'the word' : 'these words';
         reviewSection = createCategory(testInst.wrongAnswArr, category);
     } else {
         userInst.addCategory(category);
@@ -36,7 +34,12 @@ export const TestCompletePage = () => {
                 :
                 <>
                     <p className="test-complete-result">Your result is {10-wrongAnswNum}/10</p>
-                    <p className="test-complete-result">Please review {}:</p>
+                    <p className="test-complete-result">Please review
+                        {wrongAnswNum === 1 ?
+                            " the word:" :
+                            " these words:"
+                        }
+                    </p>
                     {reviewSection}
                     <div className='complete-button-container flex-column-center'>
                         <Link to={`/categories/${category}/test`} className='complete-button-container flex-column-center complete-button-practice button-yellow margin-2'>
