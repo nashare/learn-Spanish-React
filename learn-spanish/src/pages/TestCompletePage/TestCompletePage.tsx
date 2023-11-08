@@ -2,7 +2,7 @@ import "./TestCompletePage.css";
 import { useParams } from "react-router-dom";
 import { Test } from "../../models/Test";
 import { testInstances } from "../../models/Test";
-import { createCategory } from "../../controllers/createCategory";
+import { createCategory } from "../../controllers/category/createCategory";
 import { Link } from "react-router-dom";
 import { userInst } from "../../models/user";
 

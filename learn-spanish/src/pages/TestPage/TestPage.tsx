@@ -1,5 +1,5 @@
 import "./TestPage.css";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Test, testInstances } from "../../models/Test";
 import { shuffle } from "lodash";
@@ -8,7 +8,7 @@ import { words } from "../../content/words";
 export const TestPage = (): JSX.Element => {
     const params = useParams();
     const navigate = useNavigate();
-    const category = params.category as string;
+    const category: string = params.category as string;
 
     const [testInst, setTestInst] = useState<Test>(() => {
         let currentTest = testInstances[category];
@@ -21,14 +21,12 @@ export const TestPage = (): JSX.Element => {
 
     const [inputVal, setInputVal] = useState<string>('');
     const [checkButtonDisabled, setCheckButtonDisabled] = useState<boolean>(true);
+    const [testContent, setTestContent] = useState(() => testInst.createTest(setInputVal));
 
     useEffect(() => {
         setCheckButtonDisabled(!inputVal.trim());
     }, [inputVal]);
 
-    const testContent = useMemo(() => {
-        return testInst.createTest(setInputVal);
-    }, [testInst, setInputVal]);
 
     const handleCheck = (): void => {
         testInst.setUserResult(inputVal);

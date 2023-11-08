@@ -1,5 +1,5 @@
-import { normalizeString } from "./normalizeString";
-import { playAudio } from "./playAudio";
+import { normalizeString } from "../normalizeString";
+import { playAudio } from "../playAudio";
 
 export function createCategory(words: string[], category: string): JSX.Element[] {
     

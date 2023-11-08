@@ -1,6 +1,6 @@
 import "./CategoryPage.css";
 import { Link, useParams } from "react-router-dom";
-import { createCategory } from "../../controllers/createCategory";
+import { createCategory } from "../../controllers/category/createCategory";
 import { words } from "../../content/words";
 import { shuffle } from 'lodash';
 
