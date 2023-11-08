@@ -11,6 +11,7 @@ export function soundAndImagesTestResult(
     {
 
     const wordForPath = normalizeString(word);
+    const normalizedUserAnswer = normalizeString(userAnswer);
     const handlePlayClick = () => {
         playAudio(wordForPath);
     };
@@ -23,7 +24,6 @@ export function soundAndImagesTestResult(
             <button id={`${wordForPath}`} className='button-yellow' onClick={handlePlayClick}>Play</button>
             <div className='test-guesses test-guesses-images'>
                 {shuffledGuesses.map((guess, index) => {
-                    const normalizedUserAnswer = normalizeString(userAnswer);
                     const normalizedGuess = normalizeString(guess);
                     let imageClass = wrongRightClasses(normalizedGuess, wordForPath,
                         result, normalizedUserAnswer, '', ' result-img-green', ' result-img-red');

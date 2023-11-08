@@ -9,14 +9,13 @@ export function wordAndImagesTestResult(
     userAnswer: string): JSX.Element {
 
     const wordForPath = normalizeString(word);
-
+    const normalizedUserAnswer = normalizeString(userAnswer);
 
     return (
         <section className='test-container flex-column-center'>
             <p className='test-word'>{word}</p>
             <div className='test-guesses test-guesses-images'>
                 {shuffledGuesses.map((guess, index) => {
-                    const normalizedUserAnswer = normalizeString(userAnswer);
                     const normalizedGuess = normalizeString(guess);
                     let imageClass = wrongRightClasses(normalizedGuess, wordForPath,
                         result, normalizedUserAnswer, '', ' result-img-green', ' result-img-red');
