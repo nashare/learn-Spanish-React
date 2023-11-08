@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Test } from "../../models/Test";
 
 
-export const TestResultPage = () => {
+export const TestResultPage = (): JSX.Element => {
     const params = useParams();
     const navigate = useNavigate();
     const category: string = params.category as string;

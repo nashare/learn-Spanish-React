@@ -10,7 +10,7 @@ interface SignUpPageProps {
     setIsAuthenticated: (authState: boolean) => void;
 }
 
-export const SignUpPage = ({ setIsAuthenticated }: SignUpPageProps) => {
+export const SignUpPage = ({ setIsAuthenticated }: SignUpPageProps): JSX.Element => {
     const [email, setEmail] = useState<string>('');
     const [emailError, setEmailError] = useState<string>('');
     const [password, setPassword] = useState<string>('');

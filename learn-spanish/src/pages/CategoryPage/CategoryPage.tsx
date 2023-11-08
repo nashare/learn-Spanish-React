@@ -4,7 +4,7 @@ import { createCategory } from "../../controllers/createCategory";
 import { words } from "../../content/words";
 import { shuffle } from 'lodash';
 
-export const CategoryPage = () => {
+export const CategoryPage = (): JSX.Element => {
     const params = useParams();
     const category: string = params.category as string;
     const categoryContent = createCategory(shuffle(words[category]), category);

@@ -7,7 +7,7 @@ interface FormPasswordProps {
     passwordError: string;
 }
 
-export const FormPassword = ({ value, onChange, shouldHideRules, passwordError }: FormPasswordProps) => {
+export const FormPassword = ({ value, onChange, shouldHideRules, passwordError }: FormPasswordProps): JSX.Element => {
 
     const authRulesClass:string = shouldHideRules ? 'hidden' : 'auth-rules';
     const errorClass: string = passwordError !== "" ? 'error-message margin-1-0' : 'hidden';

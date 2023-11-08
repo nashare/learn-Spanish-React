@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const FormButton = () => {
+export const FormButton = (): JSX.Element => {
     return (
         <div className='form-group'>
             <div className='form-button'>

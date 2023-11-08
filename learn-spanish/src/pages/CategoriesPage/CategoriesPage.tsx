@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { userInst } from "../../models/user";
 
 
-export const CategoriesPage = () => {
+export const CategoriesPage = (): JSX.Element => {
     function applyFilter(category: string): string {
         if (userInst.categories.includes(category)) {
             return "category categories-filter"

@@ -7,7 +7,7 @@ interface HeaderProps {
     setIsAuthenticated: (authState: boolean) => void;
 }
 
-export const Header = ({ isAuthenticated, setIsAuthenticated }: HeaderProps) => {
+export const Header = ({ isAuthenticated, setIsAuthenticated }: HeaderProps): JSX.Element => {
     
     const handleLogout = (): void=> {
         setIsAuthenticated(userInst.logOut());

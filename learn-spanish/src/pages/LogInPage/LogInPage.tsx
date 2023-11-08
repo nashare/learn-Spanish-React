@@ -10,7 +10,7 @@ interface LogInPageProps {
     setIsAuthenticated: (authState: boolean) => void;
 }
 
-export const LogInPage = ({ setIsAuthenticated }: LogInPageProps) => {
+export const LogInPage = ({ setIsAuthenticated }: LogInPageProps): JSX.Element => {
     const hideRules: boolean = true;
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [email, setEmail] = useState<string>('');

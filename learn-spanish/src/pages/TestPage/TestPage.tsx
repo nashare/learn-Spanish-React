@@ -5,7 +5,7 @@ import { Test, testInstances } from "../../models/Test";
 import { shuffle } from "lodash";
 import { words } from "../../content/words";
 
-export const TestPage = () => {
+export const TestPage = (): JSX.Element => {
     const params = useParams();
     const navigate = useNavigate();
     const category = params.category as string;

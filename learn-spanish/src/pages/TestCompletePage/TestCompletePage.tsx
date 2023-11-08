@@ -6,7 +6,7 @@ import { createCategory } from "../../controllers/createCategory";
 import { Link } from "react-router-dom";
 import { userInst } from "../../models/user";
 
-export const TestCompletePage = () => {
+export const TestCompletePage = (): JSX.Element => {
     const params = useParams();
     const category: string = params.category as string;
     const testInst: Test = testInstances[category];

@@ -6,7 +6,7 @@ type FormPasswordConfirmProps = {
     passwordConfirmError: string;
 };
 
-export const FormPasswordConfirm = ({ value, onChange, passwordConfirmError }: FormPasswordConfirmProps) => {
+export const FormPasswordConfirm = ({ value, onChange, passwordConfirmError }: FormPasswordConfirmProps): JSX.Element => {
 
     const errorClass: string = passwordConfirmError !== "" ? 'error-message margin-1-0' : 'hidden';
 

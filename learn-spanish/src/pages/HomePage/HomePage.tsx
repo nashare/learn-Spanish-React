@@ -5,7 +5,7 @@ interface HomePageProps {
     isAuthenticated: boolean;
 }
 
-export const HomePage = ({ isAuthenticated }: HomePageProps) => {
+export const HomePage = ({ isAuthenticated }: HomePageProps): JSX.Element => {
     return (
         <main className="main">
         <section className='homepage-content'>

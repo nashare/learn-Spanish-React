@@ -4,7 +4,7 @@ type FormEmailProps = {
     emailError: string;
 };
 
-export const FormEmail = ({ value, onChange, emailError }: FormEmailProps) => {
+export const FormEmail = ({ value, onChange, emailError }: FormEmailProps): JSX.Element => {
     const errorClass: string = emailError !== "" ? 'error-message margin-1-0' : 'hidden';
     return (
         <div className='form-group'>
