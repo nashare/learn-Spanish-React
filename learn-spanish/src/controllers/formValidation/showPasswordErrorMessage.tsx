@@ -1,8 +1,8 @@
 export function showPasswordErrorMessage(password: string, passwordErrorMessage: string): string {
-    const upperCaseRegex = /[A-Z]/;
-    const lowerCaseRegex = /[a-z]/;
-    const digitsRegex = /\d/;
-    const specialSymbRegex = /[^A-Za-z\d]/;
+    const upperCaseRegex: RegExp = /[A-Z]/;
+    const lowerCaseRegex: RegExp = /[a-z]/;
+    const digitsRegex: RegExp = /\d/;
+    const specialSymbRegex: RegExp = /[^A-Za-z\d]/;
     if (password.length < 8) {
         passwordErrorMessage = "Less than 8 characters";
     } else if (!upperCaseRegex.test(password)) {

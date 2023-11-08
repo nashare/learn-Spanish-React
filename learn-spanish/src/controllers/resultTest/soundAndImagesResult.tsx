@@ -10,9 +10,9 @@ export function soundAndImagesTestResult(
     userAnswer: string): JSX.Element 
     {
 
-    const wordForPath = normalizeString(word);
-    const normalizedUserAnswer = normalizeString(userAnswer);
-    const handlePlayClick = () => {
+    const wordForPath: string = normalizeString(word);
+    const normalizedUserAnswer: string = normalizeString(userAnswer);
+    const handlePlayClick = (): void => {
         playAudio(wordForPath);
     };
 
@@ -24,8 +24,8 @@ export function soundAndImagesTestResult(
             <button id={`${wordForPath}`} className='button-yellow' onClick={handlePlayClick}>Play</button>
             <div className='test-guesses test-guesses-images'>
                 {shuffledGuesses.map((guess, index) => {
-                    const normalizedGuess = normalizeString(guess);
-                    let imageClass = wrongRightClasses(normalizedGuess, wordForPath,
+                    const normalizedGuess: string = normalizeString(guess);
+                    let imageClass: string = wrongRightClasses(normalizedGuess, wordForPath,
                         result, normalizedUserAnswer, '', ' result-img-green', ' result-img-red');
                     return (
                         <label className='image-label' key={index}>

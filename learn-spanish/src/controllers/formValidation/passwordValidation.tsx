@@ -6,8 +6,8 @@ interface ValidationResult {
 }
 
 export function passwordValidation(password: string): ValidationResult {
-    const passwordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])(?=.{8,})/;
-    const passwordIsValid = passwordRegex.test(password);
+    const passwordRegex: RegExp = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])(?=.{8,})/;
+    const passwordIsValid: boolean = passwordRegex.test(password);
     let passwordErrorMessage: string = "";
     if (!passwordIsValid) {
         passwordErrorMessage = showPasswordErrorMessage(password, passwordErrorMessage);

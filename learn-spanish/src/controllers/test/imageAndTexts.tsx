@@ -9,7 +9,7 @@ export function imageAndTextsTest(
 
     const wordForPath: string = normalizeString(word);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInputVal(e.target.value);
     };
 

@@ -48,11 +48,11 @@ export class Test {
         this._testNum -= 1;
     }
 
-    excludeByIndex(arr: string[], index: number) {
+    excludeByIndex(arr: string[], index: number): string[] {
         return arr.slice(0, index).concat(arr.slice(index + 1));
     }
 
-    createGuessesArr(arr: string[], ind: number) {
+    createGuessesArr(arr: string[], ind: number): string[] {
         const arrayWithoutTestWord: string[] = this.excludeByIndex(arr, ind);
         return shuffle(arrayWithoutTestWord).slice(0, 3);
     }

@@ -6,7 +6,7 @@ export function imageAndInputTest(
     setInputVal: (value: string) => void
     ): JSX.Element {
     
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInputVal(e.target.value);
     };
 

@@ -9,12 +9,12 @@ export function soundAndImagesTest(
     ): JSX.Element 
     {
 
-    const wordForPath = normalizeString(word);
-    const handlePlayClick = () => {
+    const wordForPath: string = normalizeString(word);
+    const handlePlayClick = (): void => {
         playAudio(wordForPath);
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInputVal(e.target.value);
     };
 

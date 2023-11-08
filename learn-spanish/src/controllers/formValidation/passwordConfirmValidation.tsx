@@ -4,7 +4,7 @@ interface ValidationResult {
 }
 
 export function passwordConfirmValidation(password: string, passwordConfirm: string): ValidationResult {
-    const passwordConfirmIsValid = password === passwordConfirm;
+    const passwordConfirmIsValid: boolean = password === passwordConfirm;
     let passwordConfirmErrorMessage: string = "";
     if (!passwordConfirmIsValid) {
         passwordConfirmErrorMessage = "Passwords do not match.";

@@ -5,7 +5,7 @@ interface ProtectedRouteCategProps {
     children: JSX.Element;
 }
 
-export const ProtectedRouteCateg = ({ isAuthenticated, children }: ProtectedRouteCategProps) => {
+export const ProtectedRouteCateg = ({ isAuthenticated, children }: ProtectedRouteCategProps): JSX.Element => {
 
     if (!isAuthenticated) {
         return <Navigate to="/login" replace />;

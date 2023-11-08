@@ -5,7 +5,7 @@ interface ProtectedRouteAuthProps {
     children: JSX.Element;
 }
 
-export const ProtectedRouteAuth = ({ isAuthenticated, children }: ProtectedRouteAuthProps) => {
+export const ProtectedRouteAuth = ({ isAuthenticated, children }: ProtectedRouteAuthProps): JSX.Element => {
 
     if (isAuthenticated) {
         return <Navigate to="/categories" replace />;

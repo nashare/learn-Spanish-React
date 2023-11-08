@@ -10,15 +10,15 @@ export function imageAndTextsTestResult(
     : JSX.Element {
 
     const wordForPath: string = normalizeString(word);
-    const normalizedUserAnswer = normalizeString(userAnswer);
+    const normalizedUserAnswer: string = normalizeString(userAnswer);
 
     return (
         <section className='test-container flex-column-center'>
             <img alt={categoryName} src={`/${categoryName}/${wordForPath}/${wordForPath}.jpg`} />
             <div className='test-guesses'>
                 {shuffledGuesses.map((guess, index) => {
-                    const normalizedGuess = normalizeString(guess);
-                    let paragraphClass = wrongRightClasses(normalizedGuess, wordForPath, 
+                    const normalizedGuess: string = normalizeString(guess);
+                    let paragraphClass: string = wrongRightClasses(normalizedGuess, wordForPath, 
                         result, normalizedUserAnswer, 'radio-label-p', ' result-p-green', ' result-p-red');
                     return (
                         <label className='radio-label' key={index}>

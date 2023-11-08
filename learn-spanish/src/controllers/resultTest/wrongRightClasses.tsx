@@ -2,7 +2,7 @@ export function wrongRightClasses(guess: string, word: string, result: boolean |
     userAnswer: string, baseClass: string, classRight: string, 
     classWrong: string): string {
 
-    let imageClass = baseClass;
+    let imageClass: string = baseClass;
     if (result && guess === word) {
         imageClass += classRight;
     } else if (!result && guess === word) {
