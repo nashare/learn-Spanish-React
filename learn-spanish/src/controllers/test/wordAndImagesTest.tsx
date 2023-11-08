@@ -19,7 +19,7 @@ export function wordAndImagesTest(
                     <label className='image-label' key={index}>
                         <input
                             type='radio'
-                            name='imageChoice'
+                            name='guess'
                             className='hidden-radio'
                             value={guess}
                             onChange={handleInputChange}

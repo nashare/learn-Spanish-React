@@ -13,7 +13,7 @@ export function imageAndInputTest(
     return (
         <section className='test-container flex-column-center'>
             <img alt={categoryName} src={`/${categoryName}/${normalizeString(word)}/${normalizeString(word)}.jpg`} /> 
-            <input type='text' className='test-input' onChange={handleInputChange} /> 
+            <input type='text' name="testValue" className='test-input' onChange={handleInputChange} /> 
         </section>
     );
 }

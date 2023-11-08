@@ -44,10 +44,13 @@ export class User {
         return { errorMessage, authStatus: this._isAuthenticated }
     }
 
-    // async updateCategories() {
-    //     const result = await UserClient.patch(this._categories, this._userId);
-    //     console.log(result);
-    // }
+    async addCategory(category: string) {
+        if (!this._categories.includes(category)) {
+            this._categories.push(category)
+        }
+        const result = await UserClient.patch(this._categories, this._userId);
+        this._categories = result.categories;
+    }
 
     logOut(): boolean {
         this._isAuthenticated = false;

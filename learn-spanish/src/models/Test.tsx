@@ -67,7 +67,7 @@ export class Test {
 
     checkUserResult(): boolean {
         const result =  normalizeString(this.userResult[this._testNum]) === normalizeString(this.words[this._testNum]);
-        if (!result) {
+        if (!result && !this.wrongAnswArr.includes(this.words[this._testNum])) {
             this.wrongAnswArr.push(this.words[this._testNum]);
         }
         return result;

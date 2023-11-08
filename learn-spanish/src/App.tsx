@@ -38,30 +38,26 @@ function App() {
             <CategoriesPage />
           </ProtectedRouteCateg>
         } />
-        {Object.keys(words).map((category) => (
-          <>
-            <Route key={category} path="/categories/:category" element={
-              <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
-                <CategoryPage />
-              </ProtectedRouteCateg>
-            } />
-            <Route key={category} path="/categories/:category/test" element={
-              <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
-                <TestPage />
-              </ProtectedRouteCateg>
-            } />
-            <Route key={category} path="/categories/:category/test/result" element={
-              <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
-                <TestResultPage />
-              </ProtectedRouteCateg>
-            } />
-            <Route key={category} path="/categories/:category/test/complete" element={
-              <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
-                <TestCompletePage />
-              </ProtectedRouteCateg>
-            } />
-          </>
-        ))}
+        {Object.keys(words).map((category) => {
+          const routes = [
+            { path: "/categories/:category", component: CategoryPage },
+            { path: "/categories/:category/test", component: TestPage },
+            { path: "/categories/:category/test/result", component: TestResultPage },
+            { path: "/categories/:category/test/complete", component: TestCompletePage },
+          ];
+
+          return routes.map((route, index) => (
+            <Route
+              key={`${category}-route-${index}`}
+              path={route.path}
+              element={
+                <ProtectedRouteCateg isAuthenticated={isAuthenticated}>
+                  <route.component />
+                </ProtectedRouteCateg>
+              }
+            />
+          ));
+        })}
         <Route
           path="*"
           element={<Navigate to="/" replace />}

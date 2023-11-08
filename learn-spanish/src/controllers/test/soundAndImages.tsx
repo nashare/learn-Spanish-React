@@ -29,7 +29,7 @@ export function soundAndImagesTest(
                     const guessPath = normalizeString(guess);
                     return (
                         <label className='image-label' key={index}>
-                            <input type='radio' name='imageChoice' className='hidden-radio' value={guess} onChange={handleInputChange} />
+                            <input type='radio' name='guess' className='hidden-radio' value={guess} onChange={handleInputChange} />
                             <img src={`/${categoryName}/${guessPath}/${guessPath}.jpg`} alt={categoryName} />
                         </label>
                     );

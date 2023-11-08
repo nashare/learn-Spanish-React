@@ -1,13 +1,13 @@
 import "./TestCompletePage.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Test } from "../../models/Test";
 import { testInstances } from "../../models/Test";
 import { createCategory } from "../../controllers/createCategory";
 import { Link } from "react-router-dom";
+import { userInst } from "../../models/user";
 
 export const TestCompletePage = () => {
     const params = useParams();
-    const navigate = useNavigate();
     const category: string = params.category as string;
     const testInst: Test = testInstances[category];
     testInst.incrementTestNum();
@@ -17,6 +17,8 @@ export const TestCompletePage = () => {
     if (wrongAnswNum > 0) {
         wrongNumbSentencePart = wrongAnswNum === 1 ? 'the word' : 'these words';
         reviewSection = createCategory(testInst.wrongAnswArr, category);
+    } else {
+        userInst.addCategory(category);
     }
 
     return (
