@@ -1,4 +1,5 @@
-import { normalizeString } from "../normalizeString"
+import { normalizeString } from "../normalizeString";
+import { wrongRightClasses } from "./wrongRightClasses";
 
 export function imageAndTextsTestResult(
     categoryName: string, 
@@ -10,24 +11,15 @@ export function imageAndTextsTestResult(
 
     const wordForPath: string = normalizeString(word);
 
-    function wrongRightClasses(guess: string): string {
-        let paragraphClass = 'radio-label-p';
-        if (result && normalizeString(guess) === wordForPath) {
-            paragraphClass += ' result-p-green';
-        } else if (!result && normalizeString(guess) === wordForPath) {
-            paragraphClass += ' result-p-green';
-        } else if (!result && normalizeString(guess) === normalizeString(userAnswer)) {
-            paragraphClass += ' result-p-red';
-        }
-        return paragraphClass;
-    }
-
     return (
         <section className='test-container flex-column-center'>
             <img alt={categoryName} src={`/${categoryName}/${wordForPath}/${wordForPath}.jpg`} />
             <div className='test-guesses'>
                 {shuffledGuesses.map((guess, index) => {
-                    let paragraphClass = wrongRightClasses(guess);
+                    const normalizedUserAnswer = normalizeString(userAnswer);
+                    const normalizedGuess = normalizeString(guess);
+                    let paragraphClass = wrongRightClasses(normalizedGuess, wordForPath, 
+                        result, normalizedUserAnswer, 'radio-label-p', ' result-p-green', ' result-p-red');
                     return (
                         <label className='radio-label' key={index}>
                             <input
@@ -35,7 +27,7 @@ export function imageAndTextsTestResult(
                                 type='radio'
                                 name='guess'
                                 value={guess}
-                                checked={normalizeString(userAnswer) === normalizeString(guess)}
+                                checked={normalizedUserAnswer === normalizedGuess}
                                 readOnly
                             />
                             <p className={paragraphClass}>{guess}</p>

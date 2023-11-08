@@ -1,4 +1,5 @@
 import { normalizeString } from "../normalizeString";
+import { wrongRightClasses } from "./wrongRightClasses";
 
 export function wordAndImagesTestResult(
     categoryName: string,
@@ -9,25 +10,16 @@ export function wordAndImagesTestResult(
 
     const wordForPath = normalizeString(word);
 
-    function wrongRightClasses(guess: string): string {
-        let imageClass = '';
-        if (result && normalizeString(guess) === wordForPath) {
-            imageClass += ' result-img-green';
-        } else if (!result && normalizeString(guess) === wordForPath) {
-            imageClass += ' result-img-green';
-        } else if (!result && normalizeString(guess) === normalizeString(userAnswer)) {
-            imageClass += ' result-img-red';
-        }
-        return imageClass;
-    }
-
 
     return (
         <section className='test-container flex-column-center'>
             <p className='test-word'>{word}</p>
             <div className='test-guesses test-guesses-images'>
                 {shuffledGuesses.map((guess, index) => {
-                    const imageClass: string = wrongRightClasses(guess);
+                    const normalizedUserAnswer = normalizeString(userAnswer);
+                    const normalizedGuess = normalizeString(guess);
+                    let imageClass = wrongRightClasses(normalizedGuess, wordForPath,
+                        result, normalizedUserAnswer, '', ' result-img-green', ' result-img-red');
                     return (
                     <label className='image-label' key={index}>
                         <input

@@ -1,5 +1,6 @@
 import { normalizeString } from "../normalizeString";
 import { playAudio } from "../playAudio";
+import { wrongRightClasses } from "./wrongRightClasses";
 
 export function soundAndImagesTestResult(
     categoryName: string, 
@@ -14,18 +15,6 @@ export function soundAndImagesTestResult(
         playAudio(wordForPath);
     };
 
-    function wrongRightClasses(guess: string): string {
-        let imageClass = '';
-        if (result && normalizeString(guess) === wordForPath) {
-            imageClass += ' result-img-green';
-        } else if (!result && normalizeString(guess) === wordForPath) {
-            imageClass += ' result-img-green';
-        } else if (!result && normalizeString(guess) === normalizeString(userAnswer)) {
-            imageClass += ' result-img-red';
-        }
-        return imageClass;
-    }
-
     return (
         <section className='test-container flex-column-center'>
             <audio id={`${wordForPath}_audio`}>
@@ -34,12 +23,14 @@ export function soundAndImagesTestResult(
             <button id={`${wordForPath}`} className='button-yellow' onClick={handlePlayClick}>Play</button>
             <div className='test-guesses test-guesses-images'>
                 {shuffledGuesses.map((guess, index) => {
-                    const guessPath = normalizeString(guess);
-                    const imageClass: string = wrongRightClasses(guess);
+                    const normalizedUserAnswer = normalizeString(userAnswer);
+                    const normalizedGuess = normalizeString(guess);
+                    let imageClass = wrongRightClasses(normalizedGuess, wordForPath,
+                        result, normalizedUserAnswer, '', ' result-img-green', ' result-img-red');
                     return (
                         <label className='image-label' key={index}>
                             <input type='radio' name='guess' className='hidden-radio' value={guess} disabled/>
-                            <img src={`/${categoryName}/${guessPath}/${guessPath}.jpg`} alt={categoryName} className={imageClass} />
+                            <img src={`/${categoryName}/${normalizedGuess}/${normalizedGuess}.jpg`} alt={categoryName} className={imageClass} />
                         </label>
                     );
                 })}
