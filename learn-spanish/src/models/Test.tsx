@@ -4,10 +4,10 @@ import { wordAndImagesTest } from "../controllers/test/wordAndImagesTest";
 import { soundAndImagesTest } from "../controllers/test/soundAndImages";
 import { imageAndInputTest } from "../controllers/test/imageAndInput";
 import { imageAndTextsTest } from "../controllers/test/imageAndTexts";
-import { wordAndImagesTestResult } from "../controllers/testResult/wordAndImagesTestResult";
-import { soundAndImagesTestResult } from "../controllers/testResult/soundAndImagesResult";
-import { imageAndInputTestResult } from "../controllers/testResult/imageAndInputResult";
-import { imageAndTextsTestResult } from "../controllers/testResult/imageAndTextsResult";
+import { wordAndImagesTestResult } from "../controllers/resultTest/wordAndImagesTestResult";
+import { soundAndImagesTestResult } from "../controllers/resultTest/soundAndImagesResult";
+import { imageAndInputTestResult } from "../controllers/resultTest/imageAndInputResult";
+import { imageAndTextsTestResult } from "../controllers/resultTest/imageAndTextsResult";
 import { normalizeString } from "../controllers/normalizeString";
 
 
