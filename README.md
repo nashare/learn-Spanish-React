@@ -1,4 +1,5 @@
 # Learn Spanish Visually
+![Website Screenshot](/screenshots/home.png)
 
 Welcome to the repository for "Learn Spanish Visually"! Our platform provides an interactive and engaging method to learn Spanish using visual vocabulary with AI-generated images. This application is built using React framework and TypeScript.
 
@@ -11,7 +12,6 @@ Welcome to the repository for "Learn Spanish Visually"! Our platform provides an
 
 3. Dive into your first lesson!
 
-![Website Screenshot](/screenshots/home.png)
 ![Website Screenshot](/screenshots/categories.png)
 ![Website Screenshot](/screenshots/fruits.png)
 ![Website Screenshot](/screenshots/test.png)
