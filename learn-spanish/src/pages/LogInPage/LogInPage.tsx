@@ -14,14 +14,11 @@ export const LogInPage = ({ setIsAuthenticated }: LogInPageProps): JSX.Element =
     const hideRules: boolean = true;
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [email, setEmail] = useState<string>('');
-    const [emailError, setEmailError] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [passwordError, setPasswordError] = useState<string>('');
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        handleLogIn(email, password,
-            setEmailError, setPasswordError, setErrorMessage, setIsAuthenticated);
+        handleLogIn(email, password, setErrorMessage, setIsAuthenticated);
     }
     const errorClass: string = errorMessage !== "" ? 'error-message' : 'hidden';
 
@@ -32,12 +29,12 @@ export const LogInPage = ({ setIsAuthenticated }: LogInPageProps): JSX.Element =
                 <p>Don't have an account? <Link to='/signup'>Sign up</Link> now.</p>
                 <div className='form-container'>
                     <form className='authForm flex-column-center' onSubmit={handleSubmit}>
-                        <FormEmail value={email} onChange={setEmail} emailError={emailError} />
-                        <FormPassword value={password} onChange={setPassword} shouldHideRules={hideRules} passwordError={passwordError}/>
+                        <FormEmail value={email} onChange={setEmail} emailError="" />
+                        <FormPassword value={password} onChange={setPassword} shouldHideRules={hideRules} passwordError=""/>
                         <FormButton />
-                        <div className={errorClass}>{errorMessage}</div>
                     </form>
                 </div>
+                <div className={errorClass}>{errorMessage}</div>
             </div>
         </main>
     );

@@ -1,0 +1,29 @@
+.test-complete {
+    margin-top: 3vmin;
+    width: 35%;
+    display: grid;
+    gap: 3vmin;
+}
+
+@media (max-width: 1024px) {
+    .test-complete {
+        width: 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    .test-complete {
+        width: 80%;
+    }
+}
+
+.test-complete-result {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 24px;
+    margin: 0;
+}
+
+.complete-button-container {
+    text-decoration: none;
+}

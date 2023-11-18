@@ -2,13 +2,25 @@
     width: 40%;
 }
 
+@media (max-width: 1024px) {
+    .auth-container {
+        width: 55%;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        width: 70%;
+    }
+}
+
 .form-group {
     width: 100%;
 }
 
 .error-message {
     color: rgb(200, 30, 30);
-    font-size: 2vmin;
+    font-size: 14px;
 }
 
 .authForm {
@@ -16,15 +28,10 @@
 }
 
 .auth-message {
+    text-align: center;
     font-weight: bolder;
     margin: 1vmin;
-    font-size: 3vmin;
-}
-
-@media (max-width: 768px) {
-    .auth-message {
-        font-size: 6vmin;
-    }
+    font-size: 20px;
 }
 
 .auth-label {
@@ -43,12 +50,12 @@
 }
 
 .auth-rules-p {
-    font-size: 2vmin;
+    font-size: 12px;
     margin: 0;
 }
 
 .auth-rules-list {
-    font-size: 2vmin;
+    font-size: 12px;
     margin: 0;
 }
 
